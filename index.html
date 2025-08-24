@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Income & Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#3498db" />
+</head>
+<body>
+  <div class="container">
+    <h1>💰 Income & Expense Tracker</h1>
+
+    <!-- Balance Summary -->
+    <div class="summary">
+      <div class="card">
+        <h3>Balance</h3>
+        <p id="balance">₹0</p>
+      </div>
+      <div class="card income">
+        <h3>Total Income</h3>
+        <p id="totalIncome">₹0</p>
+      </div>
+      <div class="card expense">
+        <h3>Total Expense</h3>
+        <p id="totalExpense">₹0</p>
+      </div>
+    </div>
+
+    <!-- Input Form -->
+    <div class="form">
+      <input type="text" id="note" placeholder="Enter note (e.g., Salary, Food)" />
+      <input type="number" id="amount" placeholder="Enter amount" />
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button id="addBtn">➕ Add Transaction</button>
+    </div>
+
+    <!-- Transaction List -->
+    <h2>Transactions</h2>
+    <ul id="list"></ul>
+
+    <!-- Button to open Monthly Report -->
+    <button class="report-btn" id="reportBtn">📊 Monthly Report</button>
+  </div>
+
+  <!-- Modal Popup -->
+  <div id="reportModal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="Close">&times;</button>
+      <h2>📊 Monthly Report</h2>
+      <p><strong>Total Income:</strong> <span id="monthlyIncome">₹0</span></p>
+      <p><strong>Total Expense:</strong> <span id="monthlyExpense">₹0</span></p>
+      <p><strong>Net Balance:</strong> <span id="monthlyBalance">₹0</span></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('✅ Service Worker Registered'))
+        .catch(err => console.log('SW Failed:', err));
+    }
+  </script>
+</body>
+</html>
